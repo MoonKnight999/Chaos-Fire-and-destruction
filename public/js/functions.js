@@ -64,6 +64,11 @@ function summonFire(position={x: Math.floor(Math.random()*Game.gameData.canvas.w
                 summonFire()
             }, 10000);
         }
+
+        //Extinguish
+        if (fire.collider.isCollidingWithObjectFromGroup('player') && Input.isKeyDown(" ")) {
+            fire.destroy()
+        }
     },{
         isInOriginalSize: true,
         isInTimeout: false,
