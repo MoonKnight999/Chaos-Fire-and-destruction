@@ -35,7 +35,7 @@ function summonFire(position={x: Math.floor(Math.random()*Game.gameData.canvas.w
         collider: new rectangularCollider(position, 16, 16)
     }, ()=>{
 
-        //Timeout methods
+        //Animation
         if (!fire.isInTimeout) {
             fire.isInTimeout = true
 
@@ -69,6 +69,18 @@ function summonTree(position={x: Math.floor(Math.random()*Game.gameData.canvas.w
         imageSrc: imagePaths['tree'],
         position: position,
         collider: new rectangularCollider(position, 16, 16)
+    }, () =>{
+        if (tree.collider.isCollidingWithObjectFromGroup('fire') && !tree.isBurnt) {
+            tree.isBurnt = true
+            setInterval(() => {
+                summonFire({x: tree.position.x + 16, y: tree.position.y + 16})
+                summonFire()
+                summonFire()
+                tree.destroy()
+            }, 3000);
+        }
+    },{
+        isBurnt: false
     })
 }
 
