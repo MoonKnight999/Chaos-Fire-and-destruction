@@ -71,3 +71,17 @@ function summonTree(position={x: Math.floor(Math.random()*Game.gameData.canvas.w
         collider: new rectangularCollider(position, 16, 16)
     })
 }
+
+function summonSapling(position={x: Math.floor(Math.random()*Game.gameData.canvas.width-30), y: Math.floor(Math.random()*Game.gameData.canvas.height-30)}) {
+    let sapling = new gameObject({
+        id: "sapling",
+        groups: ['sapling', 'entity'],
+        imageSrc: imagePaths['sapling'],
+        position: position,
+        collider: new rectangularCollider(position, 16, 16)
+    })
+    setInterval(() => {
+        summonTree(sapling.position)
+        sapling.destroy()
+    }, Math.floor(Math.random()*30000 + 10000)); //Max: 40s || Min: 10s
+}
