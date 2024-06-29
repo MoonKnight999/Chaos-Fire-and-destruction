@@ -56,9 +56,18 @@ function summonFire(position={x: Math.floor(Math.random()*Game.gameData.canvas.w
                 }, 500);
             }
         }
+
+        //Spread
+        if (!fire.isInSpreadingPhase) {
+            fire.isInSpreadingPhase = true
+            setTimeout(() => {
+                summonFire()
+            }, 10000);
+        }
     },{
         isInOriginalSize: true,
-        isInTimeout: false
+        isInTimeout: false,
+        isInSpreadingPhase: false
     })
 }
 
@@ -72,7 +81,7 @@ function summonTree(position={x: Math.floor(Math.random()*Game.gameData.canvas.w
     }, () =>{
         if (tree.collider.isCollidingWithObjectFromGroup('fire') && !tree.isBurnt) {
             tree.isBurnt = true
-            setInterval(() => {
+            setTimeout(() => {
                 summonFire({x: tree.position.x + 16, y: tree.position.y + 16})
                 summonFire()
                 summonFire()
@@ -92,7 +101,7 @@ function summonSapling(position={x: Math.floor(Math.random()*Game.gameData.canva
         position: position,
         collider: new rectangularCollider(position, 16, 16)
     })
-    setInterval(() => {
+    setTimeout(() => {
         summonTree(sapling.position)
         sapling.destroy()
     }, Math.floor(Math.random()*30000 + 10000)); //Max: 40s || Min: 10s
