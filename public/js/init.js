@@ -5,5 +5,6 @@ const game = new Game({
 })
 const imagePaths = {
     human: "assets/Human.png",
-    fire: "assets/Fire.png"
+    fire: "assets/Fire.png",
+    tree: "assets/Tree1.png"
 }

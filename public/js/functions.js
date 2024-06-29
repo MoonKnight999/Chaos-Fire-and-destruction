@@ -61,3 +61,13 @@ function summonFire(position={x: Math.floor(Math.random()*Game.gameData.canvas.w
         isInTimeout: false
     })
 }
+
+function summonTree(position={x: Math.floor(Math.random()*Game.gameData.canvas.width-30), y: Math.floor(Math.random()*Game.gameData.canvas.height-30)}) {
+    let tree = new gameObject({
+        id: "tree",
+        groups: ['tree', 'entity'],
+        imageSrc: imagePaths['tree'],
+        position: position,
+        collider: new rectangularCollider(position, 16, 16)
+    })
+}
