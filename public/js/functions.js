@@ -24,3 +24,40 @@ function cameraShake(entities = gameObject.getObjectsFromGroup('entity'), intens
         elapsedTime += shakeInterval;
     }, shakeInterval);
 }
+
+
+function summonFire(position={x: Math.floor(Math.random()*Game.gameData.canvas.width-30), y: Math.floor(Math.random()*Game.gameData.canvas.height-30)}) {
+    let fire = new gameObject({
+        id: "fire",
+        groups: ['fire', 'entity'],
+        imageSrc: imagePaths['fire'],
+        position: position,
+        collider: new rectangularCollider(position, 16, 16)
+    }, ()=>{
+
+        //Timeout methods
+        if (!fire.isInTimeout) {
+            fire.isInTimeout = true
+
+            if (fire.isInOriginalSize) {
+                setTimeout(() => {
+                    fire.image.width = 8
+                    fire.position.y += 8
+                    fire.isInOriginalSize = false
+                    fire.isInTimeout = false
+                }, 500);
+            }
+            else{
+                setTimeout(() => {
+                    fire.image.width = 16
+                    fire.position.y -= 8
+                    fire.isInOriginalSize = true
+                    fire.isInTimeout = false
+                }, 500);
+            }
+        }
+    },{
+        isInOriginalSize: true,
+        isInTimeout: false
+    })
+}

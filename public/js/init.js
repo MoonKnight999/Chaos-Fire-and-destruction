@@ -4,6 +4,6 @@ const game = new Game({
     height: innerHeight
 })
 const imagePaths = {
-    human: "assets/Human.png"
+    human: "assets/Human.png",
+    fire: "assets/Fire.png"
 }
-const updateMethods = {}

@@ -74,7 +74,7 @@ class Game {
                     //Draw each object img (if available)
                     if (object.type == 'gameObject' && object.hasOwnProperty("image") && object.hasOwnProperty("position")) {
                         try {
-                            Game.gameData.ctx.drawImage(object.image, object.position.x, object.position.y)
+                            Game.gameData.ctx.drawImage(object.image, object.position.x, object.position.y, object.image.height, object.image.width)
                         } catch (error) {
                             // console.warn(error, object);
                         }
