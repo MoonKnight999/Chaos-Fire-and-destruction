@@ -9,7 +9,13 @@
 </head>
 <body>
     <div id="gameContainer">
-        <canvas id="mainScreen"></canvas>
+        <div id="info">
+            <div class="info-item" id="goldDisplay"><strong>Score: </strong><span id="scoreCount">555</span></div>
+            <div class="info-item" id="scoreBoard"><strong>Gold: </strong><span id="goldCount">666</span></div>
+            <div class="info-item" id="scoreBoard"><strong>Lives: </strong><span id="livesCount">3</span></div>
+        </div>
+        <canvas id="mainScreen">
+        </canvas>
     </div>
 </body>
 <script src="js/gameEngine.js"></script>

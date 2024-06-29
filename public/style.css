@@ -9,3 +9,16 @@ canvas{
     height: 100vh;
     background-color: #472d3c;
 }
+
+#info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-item{
+    background-color: #cfc6b8;
+    padding: 0.5rem;
+    width: 5rem;
+    flex: 1;
+    border: 1px solid black;
+}
