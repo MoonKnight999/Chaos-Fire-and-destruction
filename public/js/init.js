@@ -3,6 +3,9 @@ const game = new Game({
     width: innerWidth,
     height: innerHeight
 })
+
+let level = 1
+
 const imagePaths = {
     human: "assets/Human.png",
     fire: "assets/Fire.png",

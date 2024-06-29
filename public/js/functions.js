@@ -62,12 +62,13 @@ function summonFire(position={x: Math.floor(Math.random()*Game.gameData.canvas.w
             fire.isInSpreadingPhase = true
             setTimeout(() => {
                 summonFire()
-            }, 10000);
+            }, 2/level * 80000);
         }
 
         //Extinguish
         if (fire.collider.isCollidingWithObjectFromGroup('player') && Input.isKeyDown(" ")) {
             fire.destroy()
+            level += 2
         }
     },{
         isInOriginalSize: true,
