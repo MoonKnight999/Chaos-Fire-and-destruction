@@ -61,7 +61,10 @@ function summonFire(position = { x: Math.floor(Math.random() * Game.gameData.can
         if (!fire.isInSpreadingPhase) {
             fire.isInSpreadingPhase = true
             setTimeout(() => {
-                summonFire()
+                let newFirePos = {
+                    x: (Math.random()*64) - 32
+                }
+                summonFire(newFirePos)
             }, 2 / level * 80000);
         }
 
@@ -101,6 +104,8 @@ function summonTree(position = { x: Math.floor(Math.random() * Game.gameData.can
     }, {
         isBurnt: false
     })
+    summonHelper({x: tree.position.x, y: tree.position.y+16}, tree)
+
 }
 
 function summonSapling(position = { x: Math.floor(Math.random() * Game.gameData.canvas.width - 30), y: Math.floor(Math.random() * Game.gameData.canvas.height - 30) }) {
@@ -112,12 +117,13 @@ function summonSapling(position = { x: Math.floor(Math.random() * Game.gameData.
         collider: new rectangularCollider(position, 16, 16)
     })
     setTimeout(() => {
-        summonTree(sapling.position)
+        summonTree({x: sapling.position.x, y: sapling.position.y})
+        console.log("Sapling: Summoned Tree");
         sapling.destroy()
     }, Math.floor(Math.random() * 30000 + 10000)); //Max: 40s || Min: 10s
 }
 
-function summonHelper(position = { x: Math.floor(Math.random() * Game.gameData.canvas.width - 30), y: Math.floor(Math.random() * Game.gameData.canvas.height - 30) }) {
+function summonHelper(position={x:0,y:0}, parentTree) {
     helpers++
     let helper = new gameObject({
         id: "helper",
@@ -127,18 +133,14 @@ function summonHelper(position = { x: Math.floor(Math.random() * Game.gameData.c
         collider: new rectangularCollider(position, 16, 16)
     }, () => {
 
-        // if (!helper.isLifeTimoutStarted) {
-        //     helper.isLifeTimoutStarted = true
-        //     setTimeout(() => {
-        //         helper.destroy()
-        //     }, 10000);
-        // }
+        if (!gameObject.getObjectsFromGroup('tree').includes(helper.parentTree)) {
+            helper.destroy()
+        }
 
 
         let fires = gameObject.getObjectsFromGroup('fire')
         if (fires.length && !helper.target) {
             helper.target = fires[Math.floor(Math.random()*fires.length)]
-            console.log('New target: ', helper.target);
         }
 
         
@@ -153,6 +155,7 @@ function summonHelper(position = { x: Math.floor(Math.random() * Game.gameData.c
     }, {
         isMovingTowardsFire: false,
         isLifeTimoutStarted: false,
-        target: null
+        target: null,
+        "parentTree": parentTree
     })
 }

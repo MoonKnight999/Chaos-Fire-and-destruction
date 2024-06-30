@@ -22,9 +22,19 @@ const PlayerA = new gameObject({
     else if (Input.isKeyDown('d')) {
         PlayerA.position.x += PlayerA.speed
     }
+
+    //Spawn Trees
+    if (Input.isKeyDown('t') && PlayerA.canSpawnTree) {
+        PlayerA.canSpawnTree = false
+        summonSapling({x: PlayerA.position.x, y: PlayerA.position.y + 16})
+        setTimeout(() => {
+            PlayerA.canSpawnTree = true
+        }, 1000);
+    }
     
 },{
-    speed: 3
+    speed: 3,
+    canSpawnTree: true
 })
 
 const PlayerB = new gameObject({
@@ -51,7 +61,17 @@ const PlayerB = new gameObject({
     else if (Input.isKeyDown('ArrowRight')) {
         PlayerB.position.x += PlayerB.speed
     }
+
+    //Spawn Trees
+    if (Input.isMouseDown(Game.gameData.canvas).pressed && PlayerB.canSpawnTree) {
+        PlayerB.canSpawnTree = false
+        summonSapling(Input.isMouseDown(Game.gameData.canvas).position)
+        setTimeout(() => {
+            PlayerB.canSpawnTree = true
+        }, 1000);
+    }
     
 },{
-    speed: 3
+    speed: 3,
+    canSpawnTree: true
 })
