@@ -6,6 +6,7 @@ const imagePaths = {
     tree: "assets/Tree1.png",
     sapling: "assets/Sapling.png",
     Goblin: "assets/goblin.png",
+    web: "assets/Web.png"
 }
 
 const goldCounterElement = document.getElementById('goldCount')

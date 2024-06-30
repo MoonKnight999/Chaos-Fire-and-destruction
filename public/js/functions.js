@@ -149,3 +149,29 @@ function summonHelper(position = { x: 0, y: 0 }, parentTree) {
         "parentTree": parentTree
     })
 }
+
+function spawnWeb(position) {
+    if (gold < 300) {
+        return
+    }
+    gold = gold - 300
+    let web = new gameObject({
+        id: "web",
+        groups: ['web', 'entity'],
+        imageSrc: imagePaths['web'],
+        position: position,
+        collider: new rectangularCollider(position, 16, 16)
+    },()=>{
+        if (web.collider.isCollidingWithObjectFromGroup('player') && !web.isWebUsed) {
+            web.isWebUsed = true
+            PlayerA.position = web.position
+            PlayerA.speed = 0
+            setTimeout(() => {
+                PlayerA.speed = 5
+                web.destroy()
+            }, 1000); //Holds for 1 sec
+        }
+    },{
+        isWebUsed: false
+    })
+}
