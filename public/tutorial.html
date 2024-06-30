@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaos: Fire and Destruction</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body style="background-color: #472c3d;">
     <div id="title" style="width: 100%; padding: 1rem; margin-top: 2rem;">
@@ -16,22 +15,33 @@
             <p style="color: #cfc6b8; font-family: cursive; padding: 0.5rem;">The world has been attacked by a mysterious fire spreading monster. Defeat the monster or else....</p>
         </div>
     </div>
-    <div id="buttonsContainer" style="width: 100%; margin-top: 3rem;">
-        <div class="button">
-            <h1><button><strong><a href="index.html">Play</a></strong></button></h1>
-        </div>
-        <div class="button">
-            <h1><button><strong><a href="tutorial.html">Tutorial</a></strong></button></h1>
-        </div>
-        <div class="button">
-            <h1><button><strong><a href="index.html">Settings</a></strong></button></h1>
-        </div>
-        <div class="button">
-            <h1><button><strong><a href="index.html">About</a></strong></button></h1>
-        </div>
+    
+    <ul>
+        <li><strong class="white">Goal for monster:</strong>  Burn all trees till there are no trees left.</li>
+        <li><strong class="white">Goal for planter:</strong>  Make the monster collide with [Druids] and die OR plant 10 trees.</li>
+    </ul>
+    <ul>
+        <li><strong class="white">Controls for monster:</strong>  [Left], [Right], [Up], or [Down] arrow to move. [F] to create fire.</li>
+        <li><strong class="white">Controls for planter:</strong>  Click to create saplings. Saplings grow into trees and trees summon Druids.</li>
+    </ul>
+    <div id="description" style="width: 100%; display: flex; justify-content: center;">
+        <p style="color: #cfc6b8; font-family: cursive; padding: 0.5rem;">Worst of luck! Have fun!</p>
     </div>
 </body>
 <style>
+    *{
+        font-family: cursive;
+    }
+    li{
+        color: #cfc6b8;
+    }
+    .white{
+        color: #cfc6b8;
+    }
+    body{
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
     .button{
         width: 100%;
         display: flex;
