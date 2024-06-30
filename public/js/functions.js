@@ -80,6 +80,7 @@ function summonFire(position = { x: Math.floor(Math.random() * Game.gameData.can
 }
 
 function summonTree(position = { x: Math.floor(Math.random() * Game.gameData.canvas.width - 30), y: Math.floor(Math.random() * Game.gameData.canvas.height - 30) }) {
+    trees++ 
     let tree = new gameObject({
         id: "tree",
         groups: ['tree', 'entity'],
@@ -94,6 +95,7 @@ function summonTree(position = { x: Math.floor(Math.random() * Game.gameData.can
                 summonFire()
                 summonFire()
                 tree.destroy()
+                tree--
             }, 3000);
         }
     }, {

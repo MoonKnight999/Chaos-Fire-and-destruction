@@ -11,15 +11,18 @@ const imagePaths = {
 const goldCounterElement = document.getElementById('goldCount')
 const scoreCounterElement = document.getElementById('scoreCount')
 const helpersCounterElement = document.getElementById('helpersCount')
+const treesCounterElement = document.getElementById('treesCount')
 
 let score = 0
 let gold = 0
 let helpers = 0
+let trees = 0
 
 function main() {
     goldCounterElement.innerText = gold
     scoreCounterElement.innerText = score
     helpersCounterElement.innerText = helpers
+    treesCounterElement.innerText = trees
     Game.update()
 }
 
