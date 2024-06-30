@@ -218,14 +218,14 @@ class gameObject {
         //Destroy temporary Y-axis collider
         tempColliderY.destroy()
 
-        while (this.collider.checkCollision()) {
-            this.position.y -= speed
+        // while (this.collider.checkCollision()) {
+        //     this.position.y -= speed
 
-            if (this.position.y < 0) { //Outside canvas
-                speed *= -1
-                this.position.y = targetPosition.y + speed
-            }
-        }
+        //     if (this.position.y < 0) { //Outside canvas
+        //         speed *= -1
+        //         this.position.y = targetPosition.y + speed
+        //     }
+        // }
     }
 
     findNearestObjectInGroup(groupName, maxDistance = 50, minDistance = 8, returnAllObjectsInRange = false) {

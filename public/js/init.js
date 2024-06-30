@@ -11,4 +11,5 @@ const imagePaths = {
     fire: "assets/Fire.png",
     tree: "assets/Tree1.png",
     sapling: "assets/Sapling.png",
+    Goblin: "assets/goblin.png",
 }
