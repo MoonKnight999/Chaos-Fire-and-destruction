@@ -1,4 +1,4 @@
-function cameraShake(entities = gameObject.getObjectsFromGroup('entity'), intensity = 5, duration = 500) {
+function cameraShake(entities = gameObject.getObjectsFromGroup('entity'), intensity = 10, duration = 500) {
     let elapsedTime = 0;
     const shakeInterval = 16; // Roughly 60 times per second
 
@@ -29,7 +29,7 @@ function cameraShake(entities = gameObject.getObjectsFromGroup('entity'), intens
 function summonFire(position = { x: Math.floor(Math.random() * Game.gameData.canvas.width - 30), y: Math.floor(Math.random() * Game.gameData.canvas.height - 30) }) {
     let fire = new gameObject({
         id: "fire",
-        groups: ['fire'],
+        groups: ['fire', 'entity'],
         imageSrc: imagePaths['fire'],
         position: position,
         collider: new rectangularCollider(position, 16, 16)
@@ -92,6 +92,7 @@ function summonTree(position = { x: Math.floor(Math.random() * Game.gameData.can
             summonFire()
             summonFire()
             trees--
+            cameraShake()
             tree.destroy()
 
         }
@@ -109,12 +110,20 @@ function summonSapling(position = { x: Math.floor(Math.random() * Game.gameData.
         imageSrc: imagePaths['sapling'],
         position: position,
         collider: new rectangularCollider(position, 16, 16)
+    }, ()=>{
+        if (sapling.collider.isCollidingWithObjectFromGroup('fire') && !sapling.isBurnt) {
+            sapling.isBurnt = true
+            summonFire({ x: sapling.position.x + 16, y: sapling.position.y + 16 })
+            summonFire()
+            summonFire()
+            sapling.destroy()
+        }
     })
     setTimeout(() => {
         summonTree({ x: sapling.position.x, y: sapling.position.y })
         console.log("Sapling: Summoned Tree");
         sapling.destroy()
-    }, Math.floor(Math.random() * 1000 + 5000)); //Max: 5s || Min: 1s
+    }, Math.floor(Math.random() * 10000 + 5000)); //Max: 15s || Min: 5s
 }
 
 function summonHelper(position = { x: 0, y: 0 }, parentTree) {

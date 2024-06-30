@@ -3,7 +3,7 @@ const PlayerA = new gameObject({
     groups: ["entity", "player"],
     imageSrc: imagePaths["human"],
     position: { x: 20, y: 20 },
-    collider: new rectangularCollider({}, 16, 16)
+    collider: new rectangularCollider({}, 8, 8)
 },
     () => {// Player A update method
         //Collider
@@ -24,7 +24,7 @@ const PlayerA = new gameObject({
         }
 
         //Spawn Fire
-        if (Input.isKeyDown(' ') && PlayerA.canSpawnFire) {
+        if (PlayerA.canSpawnFire) {
             PlayerA.canSpawnFire = false
 
             //Summon fire line
@@ -42,11 +42,15 @@ const PlayerA = new gameObject({
 
         //Spawn Trees
         if (Input.isMouseDown(Game.gameData.canvas).pressed && PlayerA.canSpawnTree) {
+            if (gold < 50) {
+                return
+            }
+            gold -= 50
             PlayerA.canSpawnTree = false
             summonSapling(Input.isMouseDown(Game.gameData.canvas).position)
             setTimeout(() => {
                 PlayerA.canSpawnTree = true
-            }, 250);
+            }, 500);
         }
 
         //Spawn web
@@ -57,14 +61,17 @@ const PlayerA = new gameObject({
         //Win conditions
         if (PlayerA.collider.isCollidingWithObjectFromGroup('helper')) {
             alert("Nature WON! : Druid caught the monster")
+            Game.isPaused = true
             location.reload()
         }
         if (trees >= 25) {
             alert("Nature WON! : 25 trees")
+            Game.isPaused = true
             location.reload()
         }
         if (trees <= 0) {
             alert("Monster WON! : 0 trees")
+            Game.isPaused = true
             location.reload()
         }
     }, {

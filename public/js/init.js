@@ -15,7 +15,7 @@ const helpersCounterElement = document.getElementById('helpersCount')
 const treesCounterElement = document.getElementById('treesCount')
 
 let score = 0
-let gold = 0
+let gold = 100
 let helpers = 0
 let trees = 0
 
