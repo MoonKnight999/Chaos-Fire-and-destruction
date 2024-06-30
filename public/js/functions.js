@@ -93,26 +93,17 @@ function summonTree(position = { x: Math.floor(Math.random() * Game.gameData.can
     }, () => {
         if (tree.collider.isCollidingWithObjectFromGroup('fire') && !tree.isBurnt) {
             tree.isBurnt = true
-            setTimeout(() => {
-                setTimeout(() => {
-                    tree.image.width -= 8
-                    tree.image.height -= 8
-                    tree.position.y += 8
-                    tree.position.x += 4
-                    setTimeout(() => {
-                        summonFire({ x: tree.position.x + 16, y: tree.position.y + 16 })
-                        summonFire()
-                        summonFire()
-                        trees--
-                        tree.destroy()
-                    }, 1000);
-                }, 1000);
-            }, 3000);
+            summonFire({ x: tree.position.x + 16, y: tree.position.y + 16 })
+            summonFire()
+            summonFire()
+            trees--
+            tree.destroy()
+
         }
     }, {
         isBurnt: false
     })
-    summonHelper({ x: tree.position.x, y: tree.position.y + 16 }, tree)
+    summonHelper({ x: tree.position.x, y: tree.position.y + 32 }, tree)
 
 }
 
