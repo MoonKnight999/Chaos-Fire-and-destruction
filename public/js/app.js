@@ -60,19 +60,32 @@ const PlayerA = new gameObject({
 
         //Win conditions
         if (PlayerA.collider.isCollidingWithObjectFromGroup('helper')) {
-            alert("Nature WON! : Druid caught the monster")
+            setTimeout(() => {
+                alert("Nature WON! : Druid caught the monster")
+                location.reload()
+            }, 100);
             Game.isPaused = true
-            location.reload()
         }
         if (trees >= 25) {
-            alert("Nature WON! : 25 trees")
+            setTimeout(() => {
+                alert("Nature WON! : 25 trees")
+                location.reload()
+            }, 100);
             Game.isPaused = true
-            location.reload()
         }
         if (trees <= 0) {
-            alert("Monster WON! : 0 trees")
+            setTimeout(() => {
+                alert("Monster WON! : 0 trees")
+                location.reload()
+            }, 100);
             Game.isPaused = true
-            location.reload()
+        }
+        if (destroyedTrees >= 50) {
+            setTimeout(() => {
+                alert("Monster WON! : 50 trees destroyed")
+                location.reload()
+            }, 100);
+            Game.isPaused = true
         }
     }, {
     speed: 5,

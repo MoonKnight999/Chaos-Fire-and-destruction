@@ -92,6 +92,7 @@ function summonTree(position = { x: Math.floor(Math.random() * Game.gameData.can
             summonFire()
             summonFire()
             trees--
+            destroyedTrees++
             cameraShake()
             tree.destroy()
 
