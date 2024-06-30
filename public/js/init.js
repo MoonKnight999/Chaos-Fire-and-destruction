@@ -52,3 +52,5 @@ const game = new Game({
 })
 
 game.ctx.fillStyle = "#cfc6b8" //Fill style: white
+
+//Start

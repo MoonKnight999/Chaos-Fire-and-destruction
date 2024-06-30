@@ -79,7 +79,7 @@ function summonTree(position = { x: Math.floor(Math.random() * Game.gameData.can
         groups: ['tree', 'entity'],
         imageSrc: imagePaths['tree'],
         position: position,
-        collider: new rectangularCollider(position, 16, 16)
+        collider: new rectangularCollider(position, 32, 32)
     }, () => {
         if (tree.collider.isCollidingWithObjectFromGroup('fire') && !tree.isBurnt) {
             tree.isBurnt = true
@@ -109,7 +109,7 @@ function summonSapling(position = { x: Math.floor(Math.random() * Game.gameData.
         summonTree({ x: sapling.position.x, y: sapling.position.y })
         console.log("Sapling: Summoned Tree");
         sapling.destroy()
-    }, Math.floor(Math.random() * 30000 + 10000)); //Max: 40s || Min: 10s
+    }, Math.floor(Math.random() * 1000 + 5000)); //Max: 5s || Min: 1s
 }
 
 function summonHelper(position = { x: 0, y: 0 }, parentTree) {

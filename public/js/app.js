@@ -10,16 +10,16 @@ const PlayerA = new gameObject({
         PlayerA.collider.position = PlayerA.position
 
         //Movement
-        if (Input.isKeyDown('ArrowUp')) {
+        if (Input.isKeyDown('ArrowUp') || Input.isKeyDown('w')) {
             PlayerA.position.y -= PlayerA.speed
         }
-        else if (Input.isKeyDown('ArrowDown')) {
+        else if (Input.isKeyDown('ArrowDown') || Input.isKeyDown('s')) {
             PlayerA.position.y += PlayerA.speed
         }
-        else if (Input.isKeyDown('ArrowLeft')) {
+        else if (Input.isKeyDown('ArrowLeft') || Input.isKeyDown('a')) {
             PlayerA.position.x -= PlayerA.speed
         }
-        else if (Input.isKeyDown('ArrowRight')) {
+        else if (Input.isKeyDown('ArrowRight') || Input.isKeyDown('d')) {
             PlayerA.position.x += PlayerA.speed
         }
 
@@ -37,7 +37,7 @@ const PlayerA = new gameObject({
 
             setTimeout(() => {
                 PlayerA.canSpawnFire = true
-            }, 1000);
+            }, 500);
         }
 
         //Spawn Trees
@@ -46,7 +46,7 @@ const PlayerA = new gameObject({
             summonSapling(Input.isMouseDown(Game.gameData.canvas).position)
             setTimeout(() => {
                 PlayerA.canSpawnTree = true
-            }, 1000);
+            }, 500);
         }
     }, {
     speed: 3,
