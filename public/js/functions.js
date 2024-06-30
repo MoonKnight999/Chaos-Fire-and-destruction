@@ -116,6 +116,7 @@ function summonSapling(position = { x: Math.floor(Math.random() * Game.gameData.
 }
 
 function summonHelper(position = { x: Math.floor(Math.random() * Game.gameData.canvas.width - 30), y: Math.floor(Math.random() * Game.gameData.canvas.height - 30) }) {
+    helpers++
     let helper = new gameObject({
         id: "helper",
         groups: ['helper', 'entity'],

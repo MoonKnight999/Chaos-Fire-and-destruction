@@ -1,7 +1,7 @@
 
 class Game {
     static gameData;
-    static allObjects = {};
+    static allObjects = {"gameObject":[]};
     static isPaused = false;
     static previousAllObjectsData;
 

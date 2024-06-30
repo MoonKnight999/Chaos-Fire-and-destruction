@@ -10,16 +10,16 @@ const imagePaths = {
 
 const goldCounterElement = document.getElementById('goldCount')
 const scoreCounterElement = document.getElementById('scoreCount')
-const livesCounterElement = document.getElementById('livesCount')
+const helpersCounterElement = document.getElementById('helpersCount')
 
 let score = 0
 let gold = 0
-let lives = 0
+let helpers = 0
 
 function main() {
     goldCounterElement.innerText = gold
     scoreCounterElement.innerText = score
-    livesCounterElement.innerText = lives
+    helpersCounterElement.innerText = helpers
     Game.update()
 }
 
