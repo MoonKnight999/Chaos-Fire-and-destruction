@@ -69,6 +69,8 @@ function summonFire(position = { x: Math.floor(Math.random() * Game.gameData.can
         if ((fire.collider.isCollidingWithObjectFromGroup('player') && Input.isKeyDown(" ")) || fire.collider.isCollidingWithObjectFromGroup('helper')) {
             fire.destroy()
             level += 2
+            score += 5
+            gold += 5
         }
     }, {
         isInOriginalSize: true,
