@@ -70,6 +70,11 @@ function summonFire(position = { x: Math.floor(Math.random() * Game.gameData.can
         isInTimeout: false,
         isInSpreadingPhase: false
     })
+
+    //Auto death
+    setTimeout(() => {
+        fire.destroy()
+    }, 5000); //10s
 }
 
 function summonTree(position = { x: Math.floor(Math.random() * Game.gameData.canvas.width - 30), y: Math.floor(Math.random() * Game.gameData.canvas.height - 30) }) {
