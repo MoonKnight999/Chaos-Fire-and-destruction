@@ -34,7 +34,10 @@ const PlayerA = new gameObject({
     
 },{
     speed: 3,
-    canSpawnTree: true
+    canSpawnTree: true,
+    renderMethod: () =>{
+        game.ctx.fillText("Player A", PlayerA.position.x-8, PlayerA.position.y - 8)
+    }
 })
 
 const PlayerB = new gameObject({
@@ -73,5 +76,8 @@ const PlayerB = new gameObject({
     
 },{
     speed: 3,
-    canSpawnTree: true
+    canSpawnTree: true,
+    renderMethod: () =>{
+        game.ctx.fillText("Player B", PlayerB.position.x-8, PlayerB.position.y - 8)
+    }
 })

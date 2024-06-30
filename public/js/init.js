@@ -32,3 +32,5 @@ const game = new Game({
     height: innerHeight,
     updateCallBackFunction: main
 })
+
+game.ctx.fillStyle = "#cfc6b8" //Fill style: white
