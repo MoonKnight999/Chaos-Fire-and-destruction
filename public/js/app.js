@@ -66,6 +66,13 @@ const PlayerA = new gameObject({
             }, 100);
             Game.isPaused = true
         }
+        if (PlayerA.collider.isCollidingWithObjectFromGroup('web')) {
+            setTimeout(() => {
+                alert("Nature WON! : Web caught the monster")
+                location.reload()
+            }, 100);
+            Game.isPaused = true
+        }
         if (trees >= 25) {
             setTimeout(() => {
                 alert("Nature WON! : 25 trees")
