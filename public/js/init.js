@@ -19,10 +19,28 @@ let helpers = 0
 let trees = 0
 
 function main() {
+    //Update counters
     goldCounterElement.innerText = gold
     scoreCounterElement.innerText = score
     helpersCounterElement.innerText = helpers
     treesCounterElement.innerText = trees
+
+    //Update positions of out of canvas elements
+    Game.allObjects['gameObject'].forEach(object =>{
+        if (object.position.x < 0) {
+            object.position.x = 16
+        }
+        if (object.position.y < 0) {
+            object.position.y = 16
+        }
+        if (object.position.x > Game.gameData.canvas.width) {
+            object.position.x = Game.gameData.canvas.width - 16
+        }
+        if (object.position.y > Game.gameData.canvas.height) {
+            object.position.y = Game.gameData.canvas.height-16
+        }
+    })
+
     Game.update()
 }
 

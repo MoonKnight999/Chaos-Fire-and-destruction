@@ -62,7 +62,7 @@ function summonFire(position = { x: Math.floor(Math.random() * Game.gameData.can
             fire.isInSpreadingPhase = true
             setTimeout(() => {
                 let newFirePos = {
-                    x: (Math.random()*64) - 32
+                    x: (Math.random() * 64) - 32
                 }
                 summonFire(newFirePos)
             }, 2 / level * 80000);
@@ -83,7 +83,7 @@ function summonFire(position = { x: Math.floor(Math.random() * Game.gameData.can
 }
 
 function summonTree(position = { x: Math.floor(Math.random() * Game.gameData.canvas.width - 30), y: Math.floor(Math.random() * Game.gameData.canvas.height - 30) }) {
-    trees++ 
+    trees++
     let tree = new gameObject({
         id: "tree",
         groups: ['tree', 'entity'],
@@ -94,17 +94,25 @@ function summonTree(position = { x: Math.floor(Math.random() * Game.gameData.can
         if (tree.collider.isCollidingWithObjectFromGroup('fire') && !tree.isBurnt) {
             tree.isBurnt = true
             setTimeout(() => {
-                summonFire({ x: tree.position.x + 16, y: tree.position.y + 16 })
-                summonFire()
-                summonFire()
-                tree.destroy()
-                tree--
+                setTimeout(() => {
+                    tree.image.width -= 8
+                    tree.image.height -= 8
+                    tree.position.y += 8
+                    tree.position.x += 4
+                    setTimeout(() => {
+                        summonFire({ x: tree.position.x + 16, y: tree.position.y + 16 })
+                        summonFire()
+                        summonFire()
+                        trees--
+                        tree.destroy()
+                    }, 1000);
+                }, 1000);
             }, 3000);
         }
     }, {
         isBurnt: false
     })
-    summonHelper({x: tree.position.x, y: tree.position.y+16}, tree)
+    summonHelper({ x: tree.position.x, y: tree.position.y + 16 }, tree)
 
 }
 
@@ -117,13 +125,13 @@ function summonSapling(position = { x: Math.floor(Math.random() * Game.gameData.
         collider: new rectangularCollider(position, 16, 16)
     })
     setTimeout(() => {
-        summonTree({x: sapling.position.x, y: sapling.position.y})
+        summonTree({ x: sapling.position.x, y: sapling.position.y })
         console.log("Sapling: Summoned Tree");
         sapling.destroy()
     }, Math.floor(Math.random() * 30000 + 10000)); //Max: 40s || Min: 10s
 }
 
-function summonHelper(position={x:0,y:0}, parentTree) {
+function summonHelper(position = { x: 0, y: 0 }, parentTree) {
     helpers++
     let helper = new gameObject({
         id: "helper",
@@ -134,20 +142,21 @@ function summonHelper(position={x:0,y:0}, parentTree) {
     }, () => {
 
         if (!gameObject.getObjectsFromGroup('tree').includes(helper.parentTree)) {
+            helpers--
             helper.destroy()
         }
 
 
         let fires = gameObject.getObjectsFromGroup('fire')
         if (fires.length && !helper.target) {
-            helper.target = fires[Math.floor(Math.random()*fires.length)]
+            helper.target = fires[Math.floor(Math.random() * fires.length)]
         }
 
-        
+
         if (gameObject.getObjectsFromGroup('fire').includes(helper.target)) {
             helper.moveTowards(helper.target.position, 2, true, 0)
         }
-        else{
+        else {
             helper.target = null
         }
 
