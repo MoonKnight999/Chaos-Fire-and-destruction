@@ -57,16 +57,6 @@ function summonFire(position = { x: Math.floor(Math.random() * Game.gameData.can
             }
         }
 
-        //Spread
-        if (!fire.isInSpreadingPhase) {
-            fire.isInSpreadingPhase = true
-            setTimeout(() => {
-                let newFirePos = {
-                    x: (Math.random() * 64) - 32
-                }
-                summonFire(newFirePos)
-            }, 2 / level * 80000);
-        }
 
         //Extinguish
         if ((fire.collider.isCollidingWithObjectFromGroup('player') && Input.isKeyDown(" ")) || fire.collider.isCollidingWithObjectFromGroup('helper')) {
