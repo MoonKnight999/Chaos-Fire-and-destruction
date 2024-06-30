@@ -38,8 +38,11 @@ const PlayerA = new gameObject({
 
             //Summon fire line
             for (let i = 1; i < 5; i++) {
-                summonFire({ x: (PlayerA.position.x - (i*16)), y: PlayerA.position.y + 16 })
-            }
+                summonFire({ x: (PlayerA.position.x - (i*16)), y: PlayerA.position.y })
+                summonFire({ x: (PlayerA.position.x + (i*16)), y: PlayerA.position.y })
+                summonFire({ x: (PlayerA.position.x), y: PlayerA.position.y + (i*16) })
+                summonFire({ x: (PlayerA.position.x), y: PlayerA.position.y - (i*16) })
+             }
 
             setTimeout(() => {
                 PlayerA.canSpawnFire = true
