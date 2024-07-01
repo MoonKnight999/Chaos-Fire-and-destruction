@@ -45,13 +45,13 @@ function main() {
 
     //Win conditions
     if (Game.allObjects['gameObject'].includes(PlayerA)) {
-        if (PlayerA.collider.isCollidingWithObjectFromGroup('helper')) {
-            setTimeout(() => {
-                alert("Nature WON! : Druid caught the monster")
-                location.reload()
-            }, 100);
-            Game.isPaused = true
-        }
+        // if (PlayerA.collider.isCollidingWithObjectFromGroup('helper')) {
+        //     setTimeout(() => {
+        //         alert("Nature WON! : Druid caught the monster")
+        //         location.reload()
+        //     }, 100);
+        //     Game.isPaused = true
+        // }
         if (PlayerA.collider.isCollidingWithObjectFromGroup('web')) {
             setTimeout(() => {
                 alert("Nature WON! : Web caught the monster")
