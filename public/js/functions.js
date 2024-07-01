@@ -166,10 +166,6 @@ function summonHelper(position = { x: 0, y: 0 }, parentTree) {
 }
 
 function spawnWeb(position) {
-    if (gold < 300) {
-        return
-    }
-    gold = gold - 300
     let web = new gameObject({
         id: "web",
         groups: ['web', 'entity'],

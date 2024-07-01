@@ -1,4 +1,4 @@
-const PlayerA = new gameObject({
+PlayerA = new gameObject({
     id: "PlayerA",
     groups: ["entity", "player"],
     imageSrc: imagePaths["human"],
@@ -42,10 +42,10 @@ const PlayerA = new gameObject({
 
         //Spawn Trees
         if (Input.isMouseDown(Game.gameData.canvas).pressed && PlayerA.canSpawnTree) {
-            if (gold < 50) {
+            if (gold < 10) {
                 return
             }
-            gold -= 50
+            gold -= 10
             PlayerA.canSpawnTree = false
             summonSapling(Input.isMouseDown(Game.gameData.canvas).position)
             setTimeout(() => {
@@ -55,47 +55,15 @@ const PlayerA = new gameObject({
 
         //Spawn web
         if (Input.isKeyDown("b")) {
+            if (gold < 50) {
+                return
+            }
+            gold = gold - 50
             spawnWeb(Input.isMouseDown(Game.gameData.canvas).position)
         }
 
-        //Win conditions
-        if (PlayerA.collider.isCollidingWithObjectFromGroup('helper')) {
-            setTimeout(() => {
-                alert("Nature WON! : Druid caught the monster")
-                location.reload()
-            }, 100);
-            Game.isPaused = true
-        }
-        if (PlayerA.collider.isCollidingWithObjectFromGroup('web')) {
-            setTimeout(() => {
-                alert("Nature WON! : Web caught the monster")
-                location.reload()
-            }, 100);
-            Game.isPaused = true
-        }
-        if (trees >= 25) {
-            setTimeout(() => {
-                alert("Nature WON! : 25 trees")
-                location.reload()
-            }, 100);
-            Game.isPaused = true
-        }
-        if (trees <= 0) {
-            setTimeout(() => {
-                alert("Monster WON! : 0 trees")
-                location.reload()
-            }, 100);
-            Game.isPaused = true
-        }
-        if (destroyedTrees >= 50) {
-            setTimeout(() => {
-                alert("Monster WON! : 50 trees destroyed")
-                location.reload()
-            }, 100);
-            Game.isPaused = true
-        }
     }, {
-    speed: 5,
+    speed: 3,
     canSpawnTree: true,
     canSpawnFire: true,
     renderMethod: () => {

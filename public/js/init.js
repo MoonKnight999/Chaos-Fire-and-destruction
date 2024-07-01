@@ -1,5 +1,5 @@
 let level = 1
-
+let PlayerA
 const imagePaths = {
     human: "assets/Human.png",
     fire: "assets/Fire.png",
@@ -43,6 +43,46 @@ function main() {
         }
     })
 
+    //Win conditions
+    if (Game.allObjects['gameObject'].includes(PlayerA)) {
+        if (PlayerA.collider.isCollidingWithObjectFromGroup('helper')) {
+            setTimeout(() => {
+                alert("Nature WON! : Druid caught the monster")
+                location.reload()
+            }, 100);
+            Game.isPaused = true
+        }
+        if (PlayerA.collider.isCollidingWithObjectFromGroup('web')) {
+            setTimeout(() => {
+                alert("Nature WON! : Web caught the monster")
+                location.reload()
+            }, 100);
+            Game.isPaused = true
+        }
+        if (trees >= 25) {
+            setTimeout(() => {
+                alert("Nature WON! : 25 trees")
+                location.reload()
+            }, 100);
+            Game.isPaused = true
+        }
+        if (trees <= 0) {
+            setTimeout(() => {
+                alert("Monster WON! : 0 trees")
+                location.reload()
+            }, 100);
+            Game.isPaused = true
+        }
+        if (destroyedTrees >= 50) {
+            setTimeout(() => {
+                alert("Monster WON! : 50 trees destroyed")
+                location.reload()
+            }, 100);
+            Game.isPaused = true
+        }
+    }
+    
+
     Game.update()
 }
 
@@ -54,5 +94,3 @@ const game = new Game({
 })
 
 game.ctx.fillStyle = "#cfc6b8" //Fill style: white
-
-//Start
