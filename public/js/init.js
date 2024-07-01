@@ -11,12 +11,12 @@ const imagePaths = {
 
 const goldCounterElement = document.getElementById('goldCount')
 const destroyedTreesCounterElement = document.getElementById('treesDestroyedCount')
-const helpersCounterElement = document.getElementById('helpersCount')
+const websCounterElement = document.getElementById('websCount')
 const treesCounterElement = document.getElementById('treesCount')
 
 let score = 0
 let gold = 100
-let helpers = 0
+let webs = 0
 let trees = 0
 let destroyedTrees = 0
 
@@ -24,7 +24,7 @@ function main() {
     //Update counters
     goldCounterElement.innerText = gold
     destroyedTreesCounterElement.innerText = destroyedTrees
-    helpersCounterElement.innerText = helpers
+    websCounterElement.innerText = webs
     treesCounterElement.innerText = trees
 
     //Update positions of out of canvas elements

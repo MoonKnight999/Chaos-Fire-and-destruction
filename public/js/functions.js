@@ -128,7 +128,6 @@ function summonSapling(position = { x: Math.floor(Math.random() * Game.gameData.
 }
 
 function summonHelper(position = { x: 0, y: 0 }, parentTree) {
-    helpers++
     let helper = new gameObject({
         id: "helper",
         groups: ['helper', 'entity'],
@@ -138,7 +137,6 @@ function summonHelper(position = { x: 0, y: 0 }, parentTree) {
     }, () => {
 
         if (!gameObject.getObjectsFromGroup('tree').includes(helper.parentTree)) {
-            helpers--
             helper.destroy()
         }
 
@@ -165,6 +163,7 @@ function summonHelper(position = { x: 0, y: 0 }, parentTree) {
 }
 
 function spawnWeb(position) {
+    webs++
     let web = new gameObject({
         id: "web",
         groups: ['web', 'entity'],

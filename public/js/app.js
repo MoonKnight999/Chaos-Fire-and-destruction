@@ -55,11 +55,11 @@ PlayerA = new gameObject({
 
         //Spawn web
         if (Input.isKeyDown("b") && PlayerA.canSpawnWeb) {
-            if (gold < 0) {
+            if (gold < 100) {
                 return
             }
             PlayerA.canSpawnWeb = false
-            gold = gold - 0
+            gold = gold - 100
             setTimeout(() => {
                 PlayerA.canSpawnWeb = true
             }, 200);
