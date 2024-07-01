@@ -54,11 +54,15 @@ PlayerA = new gameObject({
         }
 
         //Spawn web
-        if (Input.isKeyDown("b")) {
-            if (gold < 50) {
+        if (Input.isKeyDown("b") && PlayerA.canSpawnWeb) {
+            if (gold < 0) {
                 return
             }
-            gold = gold - 50
+            PlayerA.canSpawnWeb = false
+            gold = gold - 0
+            setTimeout(() => {
+                PlayerA.canSpawnWeb = true
+            }, 200);
             spawnWeb(Input.isMouseDown(Game.gameData.canvas).position)
         }
 
@@ -66,6 +70,7 @@ PlayerA = new gameObject({
     speed: 3,
     canSpawnTree: true,
     canSpawnFire: true,
+    canSpawnWeb: true,
     renderMethod: () => {
         game.ctx.fillText("Player A", PlayerA.position.x - 8, PlayerA.position.y - 8)
     }

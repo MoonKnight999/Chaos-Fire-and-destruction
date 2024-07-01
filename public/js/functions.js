@@ -142,7 +142,6 @@ function summonHelper(position = { x: 0, y: 0 }, parentTree) {
             helper.destroy()
         }
 
-
         let fires = gameObject.getObjectsFromGroup('fire')
         if (fires.length && !helper.target) {
             helper.target = fires[Math.floor(Math.random() * fires.length)]
